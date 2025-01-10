@@ -14,7 +14,6 @@
   "purchase_manager",
   "sales_order",
   "accepted_rejected",
-  "status",
   "section_break_owyg",
   "items"
  ],
@@ -28,9 +27,10 @@
   },
   {
    "fieldname": "owner_name",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "Owner Name",
+   "options": "Customer",
    "reqd": 1
   },
   {
@@ -73,13 +73,6 @@
    "options": "Accepted\nRejected"
   },
   {
-   "depends_on": "eval:doc.accepted_rejected==\"Accepted\"",
-   "fieldname": "status",
-   "fieldtype": "Select",
-   "label": "Status",
-   "options": "Pending\nFactory\nIndia Office\nExported\nNY Office\nShipped to Client\nDelivered"
-  },
-  {
    "fieldname": "section_break_owyg",
    "fieldtype": "Section Break"
   },
@@ -92,7 +85,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-07 20:03:13.405941",
+ "modified": "2024-11-15 21:28:57.949826",
  "modified_by": "Administrator",
  "module": "Emergediam",
  "name": "Order",

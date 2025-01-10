@@ -38,12 +38,12 @@ class Order(Document):
 				"custom_type": item.type,
 				"custom_shape": item.shape,
 				"custom_color": item.color,
-				"custom_calarity": item.calarity,
+				# "custom_calarity": item.calarity,
 				"custom_cuts": item.cuts,
 				"custom_size_sieve_": item.sieve,
 				# "custom_size_ct": item.ct,
 				# "custom_size_mm": item.mm,
-				"custom_certificate":item.certificate
+				# "custom_certificate":item.certificate
 			})
 		doc.insert(ignore_permissions=True)
 		# doc.submit()
