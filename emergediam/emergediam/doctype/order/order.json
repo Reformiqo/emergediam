@@ -15,7 +15,54 @@
   "sales_order",
   "accepted_rejected",
   "section_break_owyg",
-  "items"
+  "round",
+  "emerald",
+  "trillion",
+  "column_break_dhls",
+  "oval",
+  "pear",
+  "trapezoid",
+  "column_break_wghj",
+  "marquise",
+  "princess",
+  "tapered_baguette",
+  "column_break_fgmj",
+  "radiant",
+  "any_other",
+  "baguette",
+  "section_break_mcvp",
+  "shape",
+  "order_by_mm_table",
+  "order_by_pointer_table",
+  "order_by_sieve_table",
+  "emerald_table",
+  "oval_table",
+  "pear_table",
+  "marquise_table",
+  "princess_table",
+  "radiant_table",
+  "trillion_table",
+  "trapezoid_table",
+  "tapered_baguette_table",
+  "baguette_table",
+  "any_other_table",
+  "pricing_tab",
+  "order_by_mm__pricing_table",
+  "order_by_pointer__pricing_table",
+  "order_by_sieve__pricing_table",
+  "emerald_pricing_table",
+  "oval_pricing_table",
+  "pear_pricing_table",
+  "marquise_pricing_table",
+  "princess_pricing_table",
+  "radiant_pricing_table",
+  "trillion_pricing_table",
+  "trapezoid_pricing_table",
+  "tapered_baguette_pricing_table",
+  "baguette_pricing_table",
+  "any_other_pricing_table",
+  "order_summary_tab",
+  "order_summary_table"
  ],
  "fields": [
   {
@@ -77,15 +124,275 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "items",
+   "fieldname": "round",
+   "fieldtype": "Button",
+   "label": "Round"
+  },
+  {
+   "fieldname": "emerald",
+   "fieldtype": "Button",
+   "label": "Emerald"
+  },
+  {
+   "fieldname": "column_break_dhls",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "oval",
+   "fieldtype": "Button",
+   "label": "Oval"
+  },
+  {
+   "fieldname": "pear",
+   "fieldtype": "Button",
+   "label": "Pear"
+  },
+  {
+   "fieldname": "column_break_wghj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "marquise",
+   "fieldtype": "Button",
+   "label": "Marquise"
+  },
+  {
+   "fieldname": "princess",
+   "fieldtype": "Button",
+   "label": "Princess"
+  },
+  {
+   "fieldname": "column_break_fgmj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "radiant",
+   "fieldtype": "Button",
+   "label": "Radiant"
+  },
+  {
+   "fieldname": "any_other",
+   "fieldtype": "Button",
+   "label": "Any other"
+  },
+  {
+   "fieldname": "section_break_mcvp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "oval_table",
    "fieldtype": "Table",
-   "label": "Items",
-   "options": "SO Item"
+   "label": "Oval Table",
+   "options": "Oval"
+  },
+  {
+   "fieldname": "emerald_table",
+   "fieldtype": "Table",
+   "label": "Emerald Table",
+   "options": "Emerald"
+  },
+  {
+   "fieldname": "pear_table",
+   "fieldtype": "Table",
+   "label": "Pear Table ",
+   "options": "Pear"
+  },
+  {
+   "fieldname": "marquise_table",
+   "fieldtype": "Table",
+   "label": "Marquise Table ",
+   "options": "Marquise"
+  },
+  {
+   "fieldname": "princess_table",
+   "fieldtype": "Table",
+   "label": "Princess Table",
+   "options": "Princess"
+  },
+  {
+   "fieldname": "radiant_table",
+   "fieldtype": "Table",
+   "label": "Radiant Table ",
+   "options": "Radiant"
+  },
+  {
+   "fieldname": "any_other_table",
+   "fieldtype": "Table",
+   "label": "Any Other Table  ",
+   "options": "Any Other"
+  },
+  {
+   "fieldname": "shape",
+   "fieldtype": "Select",
+   "label": "Shape",
+   "options": "Round"
+  },
+  {
+   "fieldname": "pricing_tab",
+   "fieldtype": "Tab Break",
+   "label": "Pricing"
+  },
+  {
+   "fieldname": "order_summary_tab",
+   "fieldtype": "Tab Break",
+   "label": "Order Summary"
+  },
+  {
+   "fieldname": "order_summary_table",
+   "fieldtype": "Table",
+   "label": "Order Summary Table",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "emerald_pricing_table",
+   "fieldtype": "Table",
+   "label": "Emerald Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "oval_pricing_table",
+   "fieldtype": "Table",
+   "label": "Oval Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "pear_pricing_table",
+   "fieldtype": "Table",
+   "label": "Pear Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "marquise_pricing_table",
+   "fieldtype": "Table",
+   "label": "Marquise Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "princess_pricing_table",
+   "fieldtype": "Table",
+   "label": "Princess Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "radiant_pricing_table",
+   "fieldtype": "Table",
+   "label": "Radiant Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "trillion_pricing_table",
+   "fieldtype": "Table",
+   "label": "Trillion Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "trapezoid_pricing_table",
+   "fieldtype": "Table",
+   "label": "Trapezoid Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "tapered_baguette_pricing_table",
+   "fieldtype": "Table",
+   "label": "Tapered Baguette Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "baguette_pricing_table",
+   "fieldtype": "Table",
+   "label": "Baguette Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "any_other_pricing_table",
+   "fieldtype": "Table",
+   "label": "Any Other Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "order_by_mm__pricing_table",
+   "fieldtype": "Table",
+   "label": " Order By MM  Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "order_by_pointer__pricing_table",
+   "fieldtype": "Table",
+   "label": " Order By Pointer  Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "order_by_sieve__pricing_table",
+   "fieldtype": "Table",
+   "label": " Order By Sieve  Pricing Table",
+   "options": "Pricing"
+  },
+  {
+   "fieldname": "trillion_table",
+   "fieldtype": "Table",
+   "label": "Trillion Table  ",
+   "options": "Trillion"
+  },
+  {
+   "fieldname": "trapezoid_table",
+   "fieldtype": "Table",
+   "label": "Trapezoid Table",
+   "options": "Trapezoid"
+  },
+  {
+   "fieldname": "tapered_baguette_table",
+   "fieldtype": "Table",
+   "label": "Tapered Baguette Table",
+   "options": "Tapered Baguette"
+  },
+  {
+   "fieldname": "baguette_table",
+   "fieldtype": "Table",
+   "label": "Baguette Table",
+   "options": "Tapered Baguette"
+  },
+  {
+   "fieldname": "order_by_mm_table",
+   "fieldtype": "Table",
+   "label": "Order By MM Table",
+   "options": "Order By MM"
+  },
+  {
+   "fieldname": "order_by_sieve_table",
+   "fieldtype": "Table",
+   "label": "Order By Sieve Table",
+   "options": "Order By Sieve"
+  },
+  {
+   "fieldname": "order_by_pointer_table",
+   "fieldtype": "Table",
+   "label": "Order By Pointer Table",
+   "options": "Order By Pointer"
+  },
+  {
+   "fieldname": "trillion",
+   "fieldtype": "Button",
+   "label": "Trillion"
+  },
+  {
+   "fieldname": "tapered_baguette",
+   "fieldtype": "Button",
+   "label": "Tapered Baguette"
+  },
+  {
+   "fieldname": "baguette",
+   "fieldtype": "Button",
+   "label": "Baguette"
+  },
+  {
+   "fieldname": "trapezoid",
+   "fieldtype": "Button",
+   "label": "Trapezoid"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-15 21:28:57.949826",
+ "modified": "2025-03-25 13:12:11.982134",
  "modified_by": "Administrator",
  "module": "Emergediam",
  "name": "Order",

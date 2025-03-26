@@ -1,0 +1,109 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-03-19 04:48:46.908099",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "order_id",
+  "order_type",
+  "delivery_date",
+  "diamond_type",
+  "min_ct",
+  "max_ct",
+  "mm_size",
+  "quantity_cts",
+  "quantity_pcs",
+  "quality",
+  "tolerance",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "order_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "ORDER ID"
+  },
+  {
+   "fieldname": "order_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "ORDER TYPE"
+  },
+  {
+   "fieldname": "delivery_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "DELIVERY DATE"
+  },
+  {
+   "fieldname": "diamond_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "DIAMOND TYPE"
+  },
+  {
+   "fieldname": "mm_size",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "MM SIZE"
+  },
+  {
+   "fieldname": "quantity_cts",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Quantity (CTS)"
+  },
+  {
+   "fieldname": "quantity_pcs",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Quantity (PCS)"
+  },
+  {
+   "fieldname": "quality",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "QUALITY"
+  },
+  {
+   "fieldname": "tolerance",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "TOLERANCE"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "REMARKS"
+  },
+  {
+   "fieldname": "min_ct",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "MIN CT"
+  },
+  {
+   "fieldname": "max_ct",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "MAX CT"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-03-19 04:51:10.503421",
+ "modified_by": "Administrator",
+ "module": "Emergediam",
+ "name": "Order By Pointer",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
