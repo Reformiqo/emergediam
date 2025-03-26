@@ -62,7 +62,20 @@
   "baguette_pricing_table",
   "any_other_pricing_table",
   "order_summary_tab",
-  "order_summary_table"
+  "order_by_mm_order_summary",
+  "order_by_pointer_order_summary",
+  "order_by_sieve_order_summary",
+  "emerald_order_summary",
+  "oval_order_summary",
+  "pear_order_summary",
+  "princess_order_summary",
+  "marquise_order_summary",
+  "radiant_order_summary",
+  "trillion_order_summary",
+  "trapezoid_order_summary",
+  "tapered_baguette_order_summary",
+  "baguette_order_summary",
+  "any_other_order_summary"
  ],
  "fields": [
   {
@@ -238,12 +251,6 @@
    "label": "Order Summary"
   },
   {
-   "fieldname": "order_summary_table",
-   "fieldtype": "Table",
-   "label": "Order Summary Table",
-   "options": "Order Summary"
-  },
-  {
    "fieldname": "emerald_pricing_table",
    "fieldtype": "Table",
    "label": "Emerald Pricing Table",
@@ -388,11 +395,95 @@
    "fieldname": "trapezoid",
    "fieldtype": "Button",
    "label": "Trapezoid"
+  },
+  {
+   "fieldname": "order_by_mm_order_summary",
+   "fieldtype": "Table",
+   "label": " Order By MM Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "order_by_pointer_order_summary",
+   "fieldtype": "Table",
+   "label": " Order By Pointer Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "order_by_sieve_order_summary",
+   "fieldtype": "Table",
+   "label": " Order By Sieve Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "emerald_order_summary",
+   "fieldtype": "Table",
+   "label": "Emerald Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "oval_order_summary",
+   "fieldtype": "Table",
+   "label": "Oval Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "pear_order_summary",
+   "fieldtype": "Table",
+   "label": "Pear Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "princess_order_summary",
+   "fieldtype": "Table",
+   "label": "Princess Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "marquise_order_summary",
+   "fieldtype": "Table",
+   "label": "Marquise Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "radiant_order_summary",
+   "fieldtype": "Table",
+   "label": "Radiant Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "trillion_order_summary",
+   "fieldtype": "Table",
+   "label": "Trillion Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "trapezoid_order_summary",
+   "fieldtype": "Table",
+   "label": "Trapezoid Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "tapered_baguette_order_summary",
+   "fieldtype": "Table",
+   "label": "Tapered Baguette Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "baguette_order_summary",
+   "fieldtype": "Table",
+   "label": "Baguette Order Summary",
+   "options": "Order Summary"
+  },
+  {
+   "fieldname": "any_other_order_summary",
+   "fieldtype": "Table",
+   "label": "Any Other Order Summary",
+   "options": "Order Summary"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-03-25 13:12:11.982134",
+ "modified": "2025-03-26 16:36:55.370027",
  "modified_by": "Administrator",
  "module": "Emergediam",
  "name": "Order",

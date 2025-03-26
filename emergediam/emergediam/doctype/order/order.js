@@ -164,6 +164,16 @@ frappe.ui.form.on('Oval', {
 			}
 		});
 	},
+	oval_table_add: function(frm, cdt, cdn) {
+		// auto set the order id 
+		let row = locals[cdt][cdn];
+		
+		// random order id generate  just 6 characters
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('oval_table');
+		
+	},
     
 });
 
@@ -189,6 +199,13 @@ frappe.ui.form.on('Emerald', {
 				}
 			}
 		});
+	},
+	emerald_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		// random order id generate  just 6 characters
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('emerald_table');
 	},
     
 });
@@ -216,7 +233,12 @@ frappe.ui.form.on('Pear', {
 			}
 		});
 	},
-    
+	pear_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('pear_table');
+	},
 });
 
 // Marquise Table Handler
@@ -294,6 +316,12 @@ frappe.ui.form.on('Radiant', {
 			}
 		});
 	},
+	radiant_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('radiant_table');
+	},
     
 });
 
@@ -320,7 +348,12 @@ frappe.ui.form.on('Trillion', {
 			}
 		});
 	},
-    
+	trillion_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('trillion_table');
+	},
 });
 
 // Trapezoid Table Handler
@@ -346,7 +379,12 @@ frappe.ui.form.on('Trapezoid', {
 			}
 		});
 	},
-    
+	trapezoid_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('trapezoid_table');
+	},
 });
 
 // Tapered Baguette Table Handler
@@ -372,7 +410,12 @@ frappe.ui.form.on('Tapered Baguette', {
 			}
 		});
 	},
-    
+	tapered_baguette_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('tapered_baguette_table');
+	},
 });
 
 // Baguette Table Handler
@@ -398,25 +441,106 @@ frappe.ui.form.on('Baguette', {
 			}
 		});
 	},
-    
+	baguette_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('baguette_table');
+	},
 });
 
 // Order By MM Table Handler
 frappe.ui.form.on('Order By MM', {
+	size: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let size = row.size;
+		let fancy = "ROUND";
+		frm.call({
+			method: "emergediam.emergediam.doctype.order.order.get_table_data",
+			args: {
+				size: size,
+				fancy: fancy,
+			},
+			callback: function(r) {
+				if (r.message && Array.isArray(r.message) && r.message.length > 0) {
+					let data = r.message[0];
+					frappe.model.set_value(cdt, cdn, 'mm', data.mm || '');
+					frappe.model.set_value(cdt, cdn, 'avg_pts', data.avg_pts || '');
+					frappe.model.set_value(cdt, cdn, 'quality', data.quality || '');
+					frm.refresh_field('baguette_table');
+				}
+			}
+		});
+	},
+	order_by_mm_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('order_by_mm_table');
+	},
     
 });
 
 // Order By Pointer Table Handler
 frappe.ui.form.on('Order By Pointer', {
-    
+	size: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let size = row.size;
+		let fancy = "ROUND";
+		frm.call({
+			method: "emergediam.emergediam.doctype.order.order.get_table_data",
+			args: {
+				size: size,
+				fancy: fancy,
+			},
+			callback: function(r) {
+				if (r.message && Array.isArray(r.message) && r.message.length > 0) {
+					let data = r.message[0];
+					frappe.model.set_value(cdt, cdn, 'mm', data.mm || '');
+					frappe.model.set_value(cdt, cdn, 'avg_pts', data.avg_pts || '');
+					frappe.model.set_value(cdt, cdn, 'quality', data.quality || '');
+					frm.refresh_field('order_by_pointer_table');
+				}
+			}
+		});
+	},
+	order_by_pointer_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('order_by_pointer_table');
+	},
 });
 
-// Order By Sieve Table Handler
 frappe.ui.form.on('Order By Sieve', {
-    
+	size: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let size = row.size;
+		let fancy = "ROUND";
+		frm.call({
+			method: "emergediam.emergediam.doctype.order.order.get_table_data",
+			args: {
+				size: size,
+				fancy: fancy,
+			},
+			callback: function(r) {
+				if (r.message && Array.isArray(r.message) && r.message.length > 0) {
+					let data = r.message[0];
+					frappe.model.set_value(cdt, cdn, 'mm', data.mm || '');
+					frappe.model.set_value(cdt, cdn, 'avg_pts', data.avg_pts || '');
+					frappe.model.set_value(cdt, cdn, 'quality', data.quality || '');
+					frm.refresh_field('order_by_sieve_table');
+				}
+			}
+		});
+	},
+	order_by_sieve_table_add: function(frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+		let order_id = Math.random().toString(6).substring(2, 8);
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		frm.refresh_field('order_by_sieve_table');
+	},
 });
-
-
 frappe.ui.form.on('Pricing', {
     pricect: function(frm, cdt, cdn) {
         calculate_amount(frm, cdt, cdn);

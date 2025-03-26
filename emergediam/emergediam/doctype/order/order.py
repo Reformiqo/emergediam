@@ -10,6 +10,7 @@ import erpnext
 class Order(Document):
     def validate(self):
         self.process_tables()
+        self.process_order_summary()
 
     def create_sales_order(self):
         doc = frappe.new_doc("Sales Order")
@@ -65,59 +66,54 @@ class Order(Document):
         frappe.db.commit()
 
     def process_tables(self):
-        self.oval_pricing_table = []
-        self.order_by_mm__pricing_table = []
-        self.order_by_pointer__pricing_table = []
-        self.order_by_sieve__pricing_table = []
-        self.marquise_pricing_table = []
-        self.pear_pricing_table = []
-        self.emerald_pricing_table = []
-        self.princess_pricing_table = []
-        self.radiant_pricing_table = []
-        self.trillion_pricing_table = []
-        self.trapezoid_pricing_table = []
-        self.tapered_baguette_pricing_table = []
-        self.baguette_pricing_table = []
-        self.any_other_pricing_table = []
 
         for item in self.oval_table:
-            self.append(
-                "oval_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.pcs_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "oval_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.pcs_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.marquise_table:
-            self.append(
-                "marquise_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "marquise_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.order_by_pointer_table:
-            self.append(
-                "order_by_pointer__pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.quantity_cts,
-                    "quantity_pcs": item.quantity_pcs,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "order_by_pointer__pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.quantity_cts,
+                        "quantity_pcs": item.quantity_pcs,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.order_by_sieve_table:
             self.append(
@@ -132,145 +128,388 @@ class Order(Document):
                 },
             )
         for item in self.order_by_mm_table:
-            self.append(
-                "order_by_mm__pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.quantity_cts,
-                    "quantity_pcs": item.quantity_pcs,
-                    "quality": item.quality,
-                },
-            )
-        
-        
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "order_by_mm__pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.quantity_cts,
+                        "quantity_pcs": item.quantity_pcs,
+                        "quality": item.quality,
+                    },
+                )
+
         for item in self.pear_table:
-            self.append(
-                "pear_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "pear_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.emerald_table:
-            self.append(
-                "emerald_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "emerald_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.princess_table:
-            self.append(
-                "princess_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "princess_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.radiant_table:
-            self.append(
-                "radiant_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "radiant_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.trillion_table:
-            self.append(
-                "trillion_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "trillion_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.trapezoid_table:
-            self.append(
-                "trapezoid_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "trapezoid_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.tapered_baguette_table:
-            self.append(
-                "tapered_baguette_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "tapered_baguette_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.baguette_table:
-            self.append(
-                "baguette_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "baguette_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
 
         for item in self.any_other_table:
-            self.append(
-                "any_other_pricing_table",
-                {
-                    "order_id": item.order_id,
-                    "order_type": item.order_type,
-                    "delivery_date": item.delivery_date,
-                    "quantity_cts": item.carat_quantity,
-                    "quantity_pcs": item.carat_quantity,
-                    "quality": item.quality,
-                },
-            )
+            if not frappe.db.exists(
+                "Pricing", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "any_other_pricing_table",
+                    {
+                        "order_id": item.order_id,
+                        "order_type": item.order_type,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+    def process_order_summary(self):
+        for item in self.oval_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "oval_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.emerald_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "emerald_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.pear_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "pear_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.marquise_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "marquise_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.princess_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "princess_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.radiant_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "radiant_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.trillion_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "trillion_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.trapezoid_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "trapezoid_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.tapered_baguette_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "tapered_baguette_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.baguette_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "baguette_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.order_by_mm_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "order_by_mm_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.quantity_cts,
+                        "quantity_pcs": item.quantity_pcs,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.order_by_pointer_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "order_by_pointer_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.quantity_cts,
+                        "quantity_pcs": item.quantity_pcs,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.order_by_sieve_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "order_by_sieve_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.quantity_cts,
+                        "quantity_pcs": item.quantity_pcs,
+                        "quality": item.quality,
+                    },
+                )
+
+        for item in self.any_other_table:
+            if not frappe.db.exists(
+                "Order Summary", {"order_id": item.order_id, "parent": self.name}
+            ):
+                self.append(
+                    "any_other_order_summary",
+                    {
+                        "order_id": item.order_id,
+                        "delivery_date": item.delivery_date,
+                        "quantity_cts": item.carat_quantity,
+                        "quantity_pcs": item.carat_quantity,
+                        "quality": item.quality,
+                    },
+                )
+
 
 @frappe.whitelist()
 def get_table_data(fancy, size):
-    fancy  = frappe.get_doc("Fancy", fancy)
+    fancy = frappe.get_doc("Fancy", fancy)
     data = []
     for item in fancy.fancy:
         if item.size == size:
-            data.append({
-                "mm": item.mm,
-                "avg_pts": item.avg_pts,
-                "quality": item.quality,
-            })
+            data.append(
+                {
+                    "mm": item.mm,
+                    "avg_pts": item.avg_pts,
+                    "quality": item.quality,
+                }
+            )
     return data
