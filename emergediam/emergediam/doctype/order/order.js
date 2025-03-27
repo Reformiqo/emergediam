@@ -138,6 +138,45 @@ function calculate_amount(frm, cdt, cdn) {
     update_pricing_tables_visibility(frm);
 }
 
+function calulate_pending_amount(frm, cdt, cdn) {
+    let row = locals[cdt][cdn];
+    if (row.quantity_cts && row.ready && row.factory) {
+        let amount = flt(row.quantity_cts) - flt(row.ready) - flt(row.factory);
+        frappe.model.set_value(cdt, cdn, 'pending', amount);
+    }
+}
+
+function generate_order_id(frm, cdt, cdn, table) {
+	let row = locals[cdt][cdn];
+		
+		// If the Order Type is Refill than Order Id:     DD.MM.YY - R.##
+		// If the Order Type is order than Order Id:    DD.MM.Y Y- O.##
+
+		let order_id = '';
+		if (row.order_type === 'Refill') {
+			let today = new Date();
+			let day = today.getDate();
+			let month = today.getMonth() + 1;
+			let year = today.getFullYear();
+			
+			let series_number = frm.doc[table].length;
+			
+			series_number = series_number.toString().padStart(3, '0');
+			order_id = day + '-' + month + '-' + year + ' - R-' + series_number;
+		} else if (row.order_type === 'Order') {
+			let today = new Date();
+			let day = today.getDate();
+			let month = today.getMonth() + 1;
+			let year = today.getFullYear();
+			
+			let series_number = frm.doc[table].length;
+			series_number = series_number.toString().padStart(3, '0');
+			order_id = day + '-' + month + '-' + year + ' - O-' + series_number;
+		}
+		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+
+}
+
 // ovel pricing table 
 
 
@@ -166,13 +205,13 @@ frappe.ui.form.on('Oval', {
 	},
 	oval_table_add: function(frm, cdt, cdn) {
 		// auto set the order id 
-		let row = locals[cdt][cdn];
+		generate_order_id(frm, cdt, cdn, 'oval_table');
 		
-		// random order id generate  just 6 characters
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'oval_table');
 		frm.refresh_field('oval_table');
-		
 	},
     
 });
@@ -200,11 +239,13 @@ frappe.ui.form.on('Emerald', {
 			}
 		});
 	},
+	
 	emerald_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		// random order id generate  just 6 characters
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'emerald_table');
+		frm.refresh_field('emerald_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'emerald_table');
 		frm.refresh_field('emerald_table');
 	},
     
@@ -233,12 +274,16 @@ frappe.ui.form.on('Pear', {
 			}
 		});
 	},
+
 	pear_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'pear_table');
 		frm.refresh_field('pear_table');
 	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'pear_table');
+		frm.refresh_field('pear_table');
+	},
+    
 });
 
 // Marquise Table Handler
@@ -264,7 +309,14 @@ frappe.ui.form.on('Marquise', {
 			}
 		});
 	},
-    
+	marquise_table_add: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'marquise_table');
+		frm.refresh_field('marquise_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'marquise_table');
+		frm.refresh_field('marquise_table');
+	},
 });
 
 // Princess Table Handler
@@ -290,7 +342,14 @@ frappe.ui.form.on('Princess', {
 			}
 		});
 	},
-    
+	princess_table_add: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'princess_table');
+		frm.refresh_field('princess_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'princess_table');
+		frm.refresh_field('princess_table');
+	},
 });
 
 // Radiant Table Handler
@@ -317,12 +376,13 @@ frappe.ui.form.on('Radiant', {
 		});
 	},
 	radiant_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'radiant_table');
 		frm.refresh_field('radiant_table');
 	},
-    
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'radiant_table');
+		frm.refresh_field('radiant_table');
+	},
 });
 
 // Trillion Table Handler
@@ -349,9 +409,11 @@ frappe.ui.form.on('Trillion', {
 		});
 	},
 	trillion_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'trillion_table');
+		frm.refresh_field('trillion_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'trillion_table');
 		frm.refresh_field('trillion_table');
 	},
 });
@@ -380,9 +442,11 @@ frappe.ui.form.on('Trapezoid', {
 		});
 	},
 	trapezoid_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'trapezoid_table');
+		frm.refresh_field('trapezoid_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'trapezoid_table');
 		frm.refresh_field('trapezoid_table');
 	},
 });
@@ -411,9 +475,11 @@ frappe.ui.form.on('Tapered Baguette', {
 		});
 	},
 	tapered_baguette_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'tapered_baguette_table');
+		frm.refresh_field('tapered_baguette_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'tapered_baguette_table');
 		frm.refresh_field('tapered_baguette_table');
 	},
 });
@@ -442,9 +508,11 @@ frappe.ui.form.on('Baguette', {
 		});
 	},
 	baguette_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'baguette_table');
+		frm.refresh_field('baguette_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'baguette_table');
 		frm.refresh_field('baguette_table');
 	},
 });
@@ -473,12 +541,14 @@ frappe.ui.form.on('Order By MM', {
 		});
 	},
 	order_by_mm_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'order_by_mm_table');
 		frm.refresh_field('order_by_mm_table');
 	},
-    
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'order_by_mm_table');
+		frm.refresh_field('order_by_mm_table');
+	},
+	
 });
 
 // Order By Pointer Table Handler
@@ -505,9 +575,11 @@ frappe.ui.form.on('Order By Pointer', {
 		});
 	},
 	order_by_pointer_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'order_by_pointer_table');
+		frm.refresh_field('order_by_pointer_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'order_by_pointer_table');
 		frm.refresh_field('order_by_pointer_table');
 	},
 });
@@ -535,9 +607,11 @@ frappe.ui.form.on('Order By Sieve', {
 		});
 	},
 	order_by_sieve_table_add: function(frm, cdt, cdn) {
-		let row = locals[cdt][cdn];
-		let order_id = Math.random().toString(6).substring(2, 8);
-		frappe.model.set_value(cdt, cdn, 'order_id', order_id);
+		generate_order_id(frm, cdt, cdn, 'order_by_sieve_table');
+		frm.refresh_field('order_by_sieve_table');
+	},
+	order_type: function(frm, cdt, cdn) {
+		generate_order_id(frm, cdt, cdn, 'order_by_sieve_table');
 		frm.refresh_field('order_by_sieve_table');
 	},
 });
@@ -552,4 +626,17 @@ frappe.ui.form.on('Pricing', {
     pricing_remove: function(frm, cdt, cdn) {
         update_pricing_tables_visibility(frm);
     }
+});
+
+frappe.ui.form.on('Order Summary', {
+    quantity_cts: function(frm, cdt, cdn) {
+        calulate_pending_amount(frm, cdt, cdn);
+    },
+	ready: function(frm, cdt, cdn) {
+		calulate_pending_amount(frm, cdt, cdn);
+	},
+	factory: function(frm, cdt, cdn) {
+		calulate_pending_amount(frm, cdt, cdn);
+	},
+	
 });
